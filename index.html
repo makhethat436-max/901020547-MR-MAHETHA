@@ -71,6 +71,87 @@
         	</div>
 <div class="footer-link"><a href="contact.html">CONTACT US</div></a>
 
+			    <script>// Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const body = document.body;
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container') && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+            }
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('modal1');
+        const openModalBtn = document.getElementById('openModal1');
+        const closeModalBtn = document.getElementById('closeModal1');
+
+        // Open modal
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            body.classList.add('no-scroll');
+        });
+
+        // Close modal functions
+        function closeModal() {
+            modal.classList.remove('active');
+            body.classList.remove('no-scroll');
+        }
+
+        // Close modal when X button is clicked
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Prevent clicks inside modal content from closing the modal
+        modal.querySelector('.modal-content').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+</script>
             
 </body>
+
 </html>
